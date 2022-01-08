@@ -6,7 +6,7 @@ from django.views.decorators.cache import cache_page
 
 @cache_page(60 * 2)
 def index(request):
-    if request.method == 'POST' and 'data' in request.POST:
+    if request.method == 'POST' and request.POST.get('data'):
         form = UserDataForm(request.POST)
         if form.is_valid():
             greet_data = request.POST['data']
