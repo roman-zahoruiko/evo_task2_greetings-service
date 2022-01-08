@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from .forms import UserDataForm
 from .models import UserData
+from django.views.decorators.cache import cache_page
 
 
+@cache_page(60 * 2)
 def index(request):
     if request.method == 'POST' and 'data' in request.POST:
         form = UserDataForm(request.POST)
